@@ -10,6 +10,9 @@ This project simulates the annual percentage change in US GDP over time using hi
 - pandas
 - numpy
 - matplotlib
+- theano 
+- pymc3
+
 
 ## Installation
 
