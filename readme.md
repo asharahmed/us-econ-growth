@@ -10,9 +10,13 @@ Plans to add a Hidden Markov Model to the simulation to account for the possibil
 
 The data used in this project is from the Federal Reserve Bank of St. Louis, Missouri. The data is available [here](https://fred.stlouisfed.org/series/GDP).
 
-## Model
+## Planned Future Model
 
-The hidden markov model used in this project is a first-order Markov chain. The model is trained on the historical data to estimate the probability of a recession occuring in a given year. The model is then used to simulate the GDP growth rate for the next 80 years. 
+The Hidden Markov Model used in this project is a first-order Markov chain. The model is trained on the historical data to estimate the probability of a recession occuring in a given year. The model is then used to simulate the GDP growth rate for the next 80 years and visualize the results using a histogram.
+
+## Simulation results without HMM
+
+Without a Hidden Markov Model, the simulation projects exponential economic growth for the next 80 years. This is because the simulation is based on a normal distribution, which assumes that the GDP growth rate will be the same in the future as it has been in the past. Hopefully, with the future addition of a Hidden Markov Model, the simulation will be more accurate. 
 
 ## Results
 
