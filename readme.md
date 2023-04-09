@@ -1,6 +1,6 @@
 # 📈 US Economic Growth Simulation
 
-![alt text](https://github.com/asharahmed/us-econ-growth/blob/main/ss.png?raw=true)
+![alt text](https://github.com/asharahmed/us-econ-growth/blob/main/ss0.png?raw=true)
 
 This project simulates the annual percentage change in US GDP over time using historical data and a normal distribution. The simulation can be used to estimate the likelihood of a future recession or economic growth.
 
