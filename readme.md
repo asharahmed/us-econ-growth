@@ -8,7 +8,15 @@ Plans to add a Hidden Markov Model to the simulation to account for the possibil
 
 ## Data
 
-The data used in this project is from the Federal Reserve Bank of St. Louis. The data is available [here](https://fred.stlouisfed.org/series/GDP).
+The data used in this project is from the Federal Reserve Bank of St. Louis, Missouri. The data is available [here](https://fred.stlouisfed.org/series/GDP).
+
+## Model
+
+The hidden markov model used in this project is a first-order Markov chain. The model is trained on the historical data to estimate the probability of a recession occuring in a given year. The model is then used to simulate the GDP growth rate for the next 80 years. 
+
+## Results
+
+The simulation shows that the probability of a recession occuring in the next 80 years is 0.5. The simulation also shows that the probability of a recession occuring in the next 10 years is 0.2. 
 
 ## Prerequisites
 
