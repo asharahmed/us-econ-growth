@@ -1,4 +1,4 @@
-# US Economic Growth Simulation
+# 📈 US Economic Growth Simulation
 
 ![alt text](https://github.com/asharahmed/us_econ_growth/blob/master/figures/ss.png?raw=true)
 
@@ -13,7 +13,7 @@ This project simulates the annual percentage change in US GDP over time using hi
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/yourusername/us_econ_growth.git`
+1. Clone the repository: `git clone https://github.com/asharahmed/us_econ_growth.git`
 2. Navigate to the project directory: `cd us_econ_growth`
 3. Install the required packages: `pip install -r requirements.txt`
 
