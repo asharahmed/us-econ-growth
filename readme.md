@@ -4,6 +4,12 @@
 
 This project simulates the annual percentage change in US GDP over time using historical data and a normal distribution. The simulation can be used to estimate the likelihood of a future recession or economic growth.
 
+Plans to add a Hidden Markov Model to the simulation to account for the possibility of a recession, and to ensure that the simulation is more accurate. Data from the Federal Reserve Bank of St. Louis is used to train the model. 
+
+## Data
+
+The data used in this project is from the Federal Reserve Bank of St. Louis. The data is available [here](https://fred.stlouisfed.org/series/GDP).
+
 ## Prerequisites
 
 - Python 3.6 or later
