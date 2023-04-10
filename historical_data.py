@@ -1,9 +1,13 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from statsmodels.tsa.statespace.sarimax import SARIMAX
 from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
 from statsmodels.tsa.seasonal import seasonal_decompose
+from statsmodels.tsa.arima.model import ARIMA
+#import auto ARIMA
+from pmdarima import auto_arima
+
+
 
 
 # Load historical GDP data from FRED database
@@ -36,7 +40,7 @@ df = df.merge(population_df, left_index=True, right_index=True)
 
 # Plot GDP data along with exogenous variables on a single plot
 fig, ax = plt.subplots(2, 2, figsize=(12, 8))
-ax[0, 0].plot(df['GDP'])
+ax[0, 0].plot(df['gdp'])
 ax[0, 0].set_title('GDP')
 ax[0, 1].plot(df['inflation_rate'])
 ax[0, 1].set_title('Inflation Rate')
@@ -47,8 +51,17 @@ ax[1, 1].set_title('Population')
 plt.tight_layout()
 plt.show()
 
+# Use auto ARIMA to find the best ARIMA model
+values = auto_arima(df['gdp'], exogenous=df[['inflation_rate', 'interest_rate', 'population']], seasonal=True, m=4)
+p, d, q = values.order
+# get order values from summary
+print(values)
+#print(summary)
+
+
+
 # Fit ARIMA model to GDP data
-model = ARIMA(df['GDP'], order=(1,1,1))
+model = ARIMA(df['gdp'], order=(p,d,q))
 result = model.fit()
 
 
@@ -68,9 +81,9 @@ dates_df = dates_df.merge(population_df, left_index=True, right_index=True)
 
 # Create a dataframe with simulated GDP data
 simulated_df = pd.DataFrame(index=dates)
-simulated_df['GDP'] = result.forecast(steps=80, exog=dates_df)
+simulated_df['gdp'] = result.forecast(steps=80, exog=dates_df)
 
 # Plot simulated GDP data
-plt.plot(simulated_df['GDP'])
+plt.plot(simulated_df['gdp'])
 plt.title('Simulated GDP')
 plt.show()

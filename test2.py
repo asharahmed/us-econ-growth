@@ -130,7 +130,8 @@ test = test.dropna(subset=['inflation_rate', 'interest_rate', 'population'], how
 
 
 # Fit SARIMAX model with exogenous variables, use predicted values for exogenous variables
-model = SARIMAX(train['gdp'], exog=test[exog_vars], order=(1, 1, 1), seasonal_order=(0, 1, 1, 4))
+
+model = SARIMAX(train['gdp'], exog=train[exog_vars], order=(1, 1, 1), seasonal_order=(0, 1, 1, 4))
 results = model.fit(maxiter=100000)
 
 
@@ -138,8 +139,21 @@ results = model.fit(maxiter=100000)
 
 print("The length of test is {}".format(len(test)))
 
+
 # Forecast GDP using fitted model and exogenous variables
-forecast = results.get_forecast(steps=80, exog=test[['inflation_rate', 'interest_rate', 'population']])
+# error here, ValueError: Provided exogenous values are not of the appropriate shape. Required (80, 3), got (244, 3).
+
+# To fix this, we need to remove the uncessary rows from the test set and match the shape of the exogenous variables
+# to the number of rows in the test set
+
+
+
+
+
+
+train = train.dropna(subset=['inflation_rate', 'interest_rate', 'population'], how='any')
+
+forecast = results.get_forecast(steps=80, exog=train[['inflation_rate', 'interest_rate', 'population']])
 
 
 # Plot actual and forecasted GDP
