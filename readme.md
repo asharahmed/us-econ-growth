@@ -21,17 +21,33 @@ Without a Hidden Markov Model, the simulation projects exponential economic grow
 ## Ideal Models for this Project
 
 1. How many components in this HMM? 
-THere are 2 components in this HMM. The first component is the recession component, and the second component is the growth component. 
+
+There are 2 components in this HMM. The first component is the recession component, and the second component is the growth component. More components to be added in order to improve the model, such as a component for a recession that lasts for 2 years, a component for a recession that lasts for 3 years, and so on. 
 
 2. How can it be improved?
-The model can be improved by adding more components. For example, the model can be improved by adding a component for a recession that lasts for 2 years, a component for a recession that lasts for 3 years, and so on.
+
+
+The model can be improved by adding more components. For example, the model can be improved by adding a component for a recession that lasts for 2 years, a component for a recession that lasts for 3 years, and so on. Adding more components means that the model will be accurate, as it will be able to account for the possibility of a variety of recessions for more than 1 year as well as other complex scenarios.
 
 3. What other appropriate models can be used for GDP growth other than a HMM or Gaussian distribution?
+
+
 A Gaussian distribution is not appropriate for GDP growth because GDP growth is not normally distributed. A Hidden Markov Model is also not appropriate for GDP growth because GDP growth is not a discrete variable.
 A better model for GDP growth would be an ARIMA model. An ARIMA model is a time series model that uses past values to predict future values. An ARIMA model is appropriate for GDP growth because GDP growth is a time series variable.
 
 4. What is the ARIMA model?
+
+
 The ARIMA model is a time series model that uses past values to predict future values. The ARIMA model is appropriate for GDP growth because GDP growth is a time series variable.
+
+5. What is the SARIMA model?
+
+SARIMA is a seasonal ARIMA model, meaning that it is an ARIMA model that accounts for seasonality. The SARIMA model is appropriate for GDP growth because GDP growth is a time series variable, and GDP growth is effected by seasonal factors. For example, in many nations, consumer spending increases during the holiday season, which is why the SARIMA model is appropriate for GDP growth. Similarly agricultural production may vary from season to season, which is why the SARIMA model is appropriate for such GDP growth.
+
+6. Why has U.S. GDP grown exponentially?
+
+
+The U.S. GDP, according to historical data has been growing at an increasing rate, which is why the simulation projects exponential economic growth for the next 80 years. The simulation is based on a normal distribution, which assumes that the GDP growth rate will be the same in the future as it has been in the past. With the future addition of a Hidden Markov Model, the simulation will be more accurate. 
 
 
 ## Results
