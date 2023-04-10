@@ -1,14 +1,17 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from statsmodels.tsa.arima.model import ARIMA
+from statsmodels.tsa.statespace.sarimax import SARIMAX
 from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+from statsmodels.tsa.seasonal import seasonal_decompose
+
 
 # Load historical GDP data from FRED database
 url = 'https://fred.stlouisfed.org/graph/fredgraph.csv?bgcolor=%23e1e9f0&chart_type=line&drp=0&fo=open%20sans&graph_bgcolor=%23ffffff&height=450&mode=fred&recession_bars=on&txtcolor=%23444444&ts=12&tts=12&width=1318&nt=0&thu=0&trc=0&show_legend=yes&show_axis_titles=yes&show_tooltip=yes&id=GDP&scale=left&co'
 df = pd.read_csv(url, index_col='DATE')
 df.index = pd.to_datetime(df.index)
 df = df.sort_index()
+df.columns = ['gdp']
 
 # Load exogenous variables data
 inflation_url = 'https://fred.stlouisfed.org/graph/fredgraph.csv?bgcolor=%23e1e9f0&chart_type=line&drp=0&fo=open%20sans&graph_bgcolor=%23ffffff&height=450&mode=fred&recession_bars=on&txtcolor=%23444444&ts=12&tts=12&width=1318&nt=0&thu=0&trc=0&show_legend=yes&show_axis_titles=yes&show_tooltip=yes&id=FPCPITOTLZGUSA&scale=left&cos'
@@ -44,3 +47,30 @@ ax[1, 1].set_title('Population')
 plt.tight_layout()
 plt.show()
 
+# Fit ARIMA model to GDP data
+model = ARIMA(df['GDP'], order=(1,1,1))
+result = model.fit()
+
+
+
+
+# Simulate 80 years of GDP data
+
+# Create a dataframe with 80 years of dates
+dates = pd.date_range(start='2020-01-01', end='2100-01-01', freq='AS')
+dates = dates[:-1]
+dates_df = pd.DataFrame(index=dates)
+
+# Merge dates dataframe with exogenous variables
+dates_df = dates_df.merge(inflation_df, left_index=True, right_index=True)
+dates_df = dates_df.merge(interest_rate_df, left_index=True, right_index=True)
+dates_df = dates_df.merge(population_df, left_index=True, right_index=True)
+
+# Create a dataframe with simulated GDP data
+simulated_df = pd.DataFrame(index=dates)
+simulated_df['GDP'] = result.forecast(steps=80, exog=dates_df)
+
+# Plot simulated GDP data
+plt.plot(simulated_df['GDP'])
+plt.title('Simulated GDP')
+plt.show()
